@@ -1,0 +1,65 @@
+#!bin/bash
+# Git Folder Path
+GIT_FOLDER=""
+
+# Define a function to create gitblog subcommands
+gitblog() {
+    local subcommand="$1"
+    shift # Remove the first argument (the subcommand itself)
+
+    case "$subcommand" in
+        dev)
+            cd $GIT_FOLDER
+            yarn dev
+            ;;
+        log)
+            cd $GIT_FOLDER
+            git log "$@"  # Forward remaining arguments (if any)
+            cd ~  # Return to home directory
+            ;;
+        status)
+            cd $GIT_FOLDER
+            git status "$@"  # Forward remaining arguments (if any)
+            cd ~  # Return to home directory
+            ;;
+        commit)
+            if [ -z "$1" ]; then
+                echo "Please provide a commit message."
+            else
+                cd $GIT_FOLDER
+                git add content/posts
+                git commit -m "$1"
+                cd ~  # Return to home directory
+            fi
+            ;;
+        cpush)
+            if [ -z "$1" ]; then
+                echo "Please provide a commit message."
+            else
+                cd $GIT_FOLDER
+                git add content/posts
+                git commit -m "$1"
+                git push -u origin master
+                cd ~  # Return to home directory
+            fi
+            ;;
+        push)
+            cd $GIT_FOLDER
+            git push -u master
+            cd ~  # Return to home directory
+            ;;
+        help)
+            echo "These are gitblog commands usage:"
+            echo ""
+            echo "  gitblog log                Show the git log"
+            echo "  gitblog status             Show the git status"
+            echo "  gitblog commit <message>   Commit changes with a custom message"
+            echo "  gitblog cpush <message>    Commit and push changes with a custom message"
+            echo "  gitblog push               Push changes to remote repository"
+            echo ""
+            ;;
+        *)
+            echo "Invalid command. Available commands: log, status, commit, cpush, push, help"
+            ;;
+    esac
+}
