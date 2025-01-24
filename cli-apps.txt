@@ -1,2 +1,9 @@
 telnet
 tldr
+ripgrep
+gopls
+lua
+lua-language-server
+neovim
+telnet
+yarn
