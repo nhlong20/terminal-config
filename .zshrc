@@ -51,8 +51,9 @@ zinit cdreplay -q
 
 # Keybindings
 bindkey -e
-# bindkey '^p' history-search-backward
-# bindkey '^n' history-search-forward
+bindkey '^[b' backward-word             # Option + ← (Move backward by word)
+bindkey '^[f' forward-word              # Option + → (Move forward by word)
+bindkey '^\k' kill-whole-line           # Control + K to delete the current line
 bindkey '\e[A' history-search-backward  # Up arrow for previous matching command
 bindkey '\e[B' history-search-forward   # Down arrow for next matching command
 bindkey '^[w' kill-region
