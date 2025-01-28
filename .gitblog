@@ -1,6 +1,6 @@
 #!bin/bash
 # Git Folder Path
-GIT_FOLDER=""
+GIT_FOLDER="/Users/longnguyen/Documents/_projects/nhlong20/nhlong20.github.io"
 
 # Define a function to create gitblog subcommands
 gitblog() {
@@ -9,18 +9,13 @@ gitblog() {
 
     case "$subcommand" in
         dev)
-            cd $GIT_FOLDER
-            yarn dev
+            (cd $GIT_FOLDER; yarn dev)
             ;;
         log)
-            cd $GIT_FOLDER
-            git log "$@"  # Forward remaining arguments (if any)
-            cd ~  # Return to home directory
+            (cd $GIT_FOLDER; git log "$@")  # Forward remaining arguments (if any)
             ;;
         status)
-            cd $GIT_FOLDER
-            git status "$@"  # Forward remaining arguments (if any)
-            cd ~  # Return to home directory
+            (cd $GIT_FOLDER; git status "$@")  # Forward remaining arguments (if any)
             ;;
         commit)
             if [ -z "$1" ]; then
