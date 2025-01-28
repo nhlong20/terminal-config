@@ -1,6 +1,6 @@
 #!bin/bash
 # Git Folder Path
-GIT_FOLDER="/Users/longnguyen/Documents/_projects/nhlong20/nhlong20.github.io"
+GIT_FOLDER="$HOME/Documents/_projects/nhlong20/nhlong20.github.io"
 
 # Define a function to create gitblog subcommands
 gitblog() {
